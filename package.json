@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-training",
+  "version": "1.0.0",
+  "description": "Homework for nodejs training program",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"No tests here yet :(\"",
+    "start": "nodemon --exec babel-node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aliaksei-Martinkevich/nodejs-training.git"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "js"
+  ],
+  "author": "Aliaksei Martsinkevich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aliaksei-Martinkevich/nodejs-training/issues"
+  },
+  "homepage": "https://github.com/Aliaksei-Martinkevich/nodejs-training#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "nodemon": "^1.17.3"
+  }
+}
