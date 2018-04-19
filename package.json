@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"No tests here yet :(\"",
     "start": "nodemon --exec babel-node ./app.js",
-    "lint": "eslint ./app.js"
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
