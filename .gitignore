@@ -62,3 +62,6 @@ typings/
 
 # Visual Studio Code project folder
 .vscode
+
+# CSV data folder
+data/
