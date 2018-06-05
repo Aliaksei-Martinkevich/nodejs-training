@@ -9,6 +9,8 @@ import streamPackage from 'stream';
 
 const parseAsync = util.promisify(parse);
 const readdir = util.promisify(fs.readdir);
+const writeFile = util.promisify(fs.writeFile);
+const readFile = util.promisify(fs.readFile);
 
 const assertValidFile = (fileName) => {
   if (!fileName) {
@@ -76,20 +78,12 @@ const cssBundler = async (folder) => {
   const dir = await readdir(folder);
   const cssFiles = dir.filter(file => path.extname(file) === '.css');
 
-  const writeStream = fs.createWriteStream(path.join(folder, 'bundle.css'));
-  [...cssFiles.map(pathToFile => path.join(folder, pathToFile)), './nodejs-homework3.css']
-    .map(pathToFile => fs.createReadStream(pathToFile))
-    .reduce((passThrough, stream, _, streams) => {
-      stream.pipe(passThrough, { end: false });
-      stream.once('end', () => {
-        if (streams.every(({ ended }) => ended)) {
-          passThrough.emit('end');
-        }
-      });
+  const contents = await Promise.all([
+    ...cssFiles.map(pathToFile => path.join(folder, pathToFile)),
+    './nodejs-homework3.css',
+  ].map(pathToFile => readFile(pathToFile)));
 
-      return passThrough;
-    }, new streamPackage.PassThrough())
-    .pipe(writeStream);
+  return writeFile(path.join(folder, 'bundle.css'), contents.join('\n'));
 };
 
 commander
