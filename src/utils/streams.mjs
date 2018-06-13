@@ -6,7 +6,6 @@ import util from 'util';
 import path from 'path';
 
 
-
 const parseAsync = util.promisify(parse);
 const readdir = util.promisify(fs.readdir);
 const writeFile = util.promisify(fs.writeFile);

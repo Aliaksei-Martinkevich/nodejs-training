@@ -1,4 +1,6 @@
 {
     "name": "Node.js Homework Application",
-    "dataDir": "./data"
+    "dataDir": "./data",
+    "host": "localhost",
+    "port": 3000
 }
