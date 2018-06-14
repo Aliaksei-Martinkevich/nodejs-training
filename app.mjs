@@ -1,25 +1,13 @@
-import path from 'path';
+import express from 'express';
+import bodyParser from 'body-parser';
 
-import config from './config/config.json';
-import { Product, User } from './models';
+import rootRouter from './routes';
+import { cookieParser } from './middlewares';
 
-import { Importer } from './src/Importer/importer';
-import { DirWatcher } from './src/DirWatcher/dirwatcher';
+const app = express();
 
-console.log(`Application name: ${config.name}`);
+app.use(bodyParser.json());
+app.use(cookieParser);
+app.use('/', rootRouter);
 
-// eslint-disable-next-line no-unused-vars
-const user = new User();
-// eslint-disable-next-line no-unused-vars
-const product = new Product();
-
-new DirWatcher(config.dataDir, 100)
-  .on('changed', changes => changes
-    .filter(filename => path.extname(filename).toLowerCase() === '.csv')
-    .forEach(async (filename) => {
-      const filePath = path.join(config.dataDir, filename);
-      const fileContent = await Importer.import(filePath);
-      const fileContentString = JSON.stringify(fileContent);
-      console.log(`File '${filename}' added:\n${fileContentString}`);
-    }))
-  .watch();
+export default app;

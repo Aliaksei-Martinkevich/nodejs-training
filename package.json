@@ -30,8 +30,11 @@
     "nodemon": "^1.17.3"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "commander": "^2.15.1",
+    "cookie": "^0.3.1",
     "csv-parse": "^2.2.0",
+    "express": "^4.16.3",
     "through2": "^2.0.3"
   }
 }
