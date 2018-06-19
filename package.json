@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"No tests here yet :(\"",
-    "start": "nodemon --exec node --experimental-modules ./app.mjs",
+    "start": "nodemon --exec node --experimental-modules ./index.mjs",
     "lint": "eslint ."
   },
   "repository": {

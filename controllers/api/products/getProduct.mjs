@@ -1,4 +1,4 @@
-import Store from '../../Store';
+import Store from '../../../Store';
 
 
 export default function getProduct(req, res, next) {
