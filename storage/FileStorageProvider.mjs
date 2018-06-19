@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 import Storage from './Storage';
+import { User, Product } from '../models';
 
 
 export default class FileStorageProvider {
@@ -17,11 +18,15 @@ export default class FileStorageProvider {
 
     const file = fs.readFileSync(this.path);
     const data = JSON.parse(file);
-    this.storage = new Storage(data);
+    this.storage = new Storage({
+      users: data.users.map(userObject => new User(userObject)),
+      products: data.products.map(productObject => new Product(productObject)),
+    });
     this.storage.on('change', this.commitToFile);
   }
 
   commitToFile() {
+    console.log(this.storage, this.storage.toJSONString());
     return fs.writeFileSync(this.path, this.storage.toJSONString());
   }
 }

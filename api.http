@@ -1,19 +1,24 @@
 @url = http://localhost:3000/api
-@id = 7064432f-8509-4e27-2c22-f0462c2ac140
+@id = 0522850f-304c-452f-1aa1-15a9794d988b
 @name = Product with reviews
 @reviews = [{ "name": "Review 1" }, { "name": "Review 2" }]
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNTI5NDE5MzgyLCJleHAiOjE1MzMwMTkzODJ9.MXVo1b_3SPxblPy_nAEM8-J_WFkapy97Rl4Wx66vWm3qxA6js83CXBNWSdM9nOVcbHO2rd9gjtjkqLm1JyvtzA
 
 GET {{url}}/products HTTP/1.1
+Authorization: {{token}}
 
 ###
 GET {{url}}/products/{{id}} HTTP/1.1
+Authorization: {{token}}
 
 ###
 GET {{url}}/products/{{id}}/reviews HTTP/1.1
+Authorization: {{token}}
 
 ###
 POST {{url}}/products HTTP/1.1
 Content-Type: application/json
+Authorization: {{token}}
 
 {
     "name": "{{name}}",
@@ -22,3 +27,13 @@ Content-Type: application/json
 
 ###
 GET {{url}}/users HTTP/1.1
+Authorization: {{token}}
+
+###
+POST {{url}}/auth HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}

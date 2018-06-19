@@ -42,6 +42,14 @@ export default class Storage extends events.EventEmitter {
     return this.users;
   }
 
+  /**
+   * @param {string} username
+   * @returns {User | null}
+   */
+  getUserByUsername(username) {
+    return this.users.find(user => user.username === username) || null;
+  }
+
   toJSONString() {
     return JSON.stringify({
       products: this.products,
