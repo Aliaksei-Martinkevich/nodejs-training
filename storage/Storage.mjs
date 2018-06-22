@@ -1,5 +1,8 @@
 import events from 'events';
 
+import { User } from '../models/User';
+
+
 export default class Storage extends events.EventEmitter {
   /**
    * @param {Array<Product>} products
@@ -36,10 +39,38 @@ export default class Storage extends events.EventEmitter {
   }
 
   /**
+   * @param {User} user
+   */
+  addUser(user) {
+    this.users.push(user);
+    this.emit('change');
+  }
+
+  /**
    * @returns {Array<User>}
    */
   getUsers() {
     return this.users;
+  }
+
+  /**
+   * @param {*} data
+   * @returns {User}
+   */
+  findOrCreateUser(data) {
+    const user = this.findUser(data);
+
+    if (user) return user;
+
+    const newUser = new User(data);
+    this.addUser(newUser);
+    return newUser;
+  }
+
+  findUser(userData) {
+    return this.users
+      .find(user => Object.entries(userData)
+        .every(([key, value]) => user[key] === value)) || null;
   }
 
   /**
@@ -50,6 +81,25 @@ export default class Storage extends events.EventEmitter {
     return this.users.find(user => user.username === username) || null;
   }
 
+  /**
+   * @param {string} id
+   * @returns {User | null}
+   */
+  getUserById(id) {
+    return this.users.find(user => user.id === id) || null;
+  }
+
+  /**
+   * @param {string} id
+   * @returns {User | null}
+   */
+  getUserByFacebookId(facebookId) {
+    return this.users.find(user => user.facebookId === facebookId) || null;
+  }
+
+  /**
+   * @returns {string}
+   */
   toJSONString() {
     return JSON.stringify({
       products: this.products,

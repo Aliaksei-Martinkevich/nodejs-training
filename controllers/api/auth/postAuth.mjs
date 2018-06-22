@@ -1,13 +1,11 @@
-import Store from '../../../Store';
 import UsersService from '../../../services/UsersService';
 import AuthService from '../../../services/AuthService';
 
 
 export default async function postAuth(req, res, next) {
-  const { username, password } = req.body;
-  const user = Store.storage.getUserByUsername(username);
+  const { user } = req;
 
-  if (user && await AuthService.checkPassword(user, password)) {
+  if (user) {
     res.statusCode = 200;
     res.json({
       code: 200,

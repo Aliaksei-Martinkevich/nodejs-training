@@ -26,7 +26,6 @@ export default class FileStorageProvider {
   }
 
   commitToFile() {
-    console.log(this.storage, this.storage.toJSONString());
     return fs.writeFileSync(this.path, this.storage.toJSONString());
   }
 }

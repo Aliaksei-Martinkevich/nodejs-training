@@ -9,14 +9,18 @@ export class User {
     password,
     passwordHash,
     id = uuidv4(),
+    facebookId = null,
+    twitterId = null,
   }) {
     this.username = username;
     this.email = email;
     if (passwordHash) {
       this.passwordHash = passwordHash;
-    } else {
+    } else if (password) {
       this.passwordHash = hash(password);
     }
     this.id = id;
+    this.facebookId = facebookId;
+    this.twitterId = twitterId;
   }
 }
