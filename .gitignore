@@ -65,3 +65,5 @@ typings/
 
 # CSV data folder
 data/
+
+bin/launch.ps1
