@@ -11,6 +11,7 @@ export class User {
     id = uuidv4(),
     facebookId = null,
     twitterId = null,
+    googleId = null,
   }) {
     this.username = username;
     this.email = email;
@@ -22,5 +23,6 @@ export class User {
     this.id = id;
     this.facebookId = facebookId;
     this.twitterId = twitterId;
+    this.googleId = googleId;
   }
 }

@@ -12,10 +12,7 @@ const LocalStrategy = new PassportLocalStrategy.Strategy({
   if (user && await AuthService.checkPassword(user, password)) {
     done(null, user);
   } else {
-    done({
-      code: 404,
-      message: 'Not Found',
-    });
+    done(new Error('User not found'));
   }
 });
 
