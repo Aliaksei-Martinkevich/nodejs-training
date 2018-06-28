@@ -1,6 +1,6 @@
 import Store from '../../../Store';
 
 
-export default function getProduct(req, res, next) {
-  res.json(Store.storage.getProductById(req.params.id));
+export default async function getProduct(req, res, next) {
+  res.json(await Store.storage.getProductById(req.params.id));
 }

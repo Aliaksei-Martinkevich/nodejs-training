@@ -20,7 +20,7 @@ passport.use(TwitterStrategy);
 passport.use(GoogleStrategy);
 
 passport.serializeUser((user, done) => done(null, user.id));
-passport.deserializeUser((id, done) => done(null, Store.storage.getUserById(id)));
+passport.deserializeUser(async (id, done) => done(null, await Store.storage.getUserById(id)));
 
 app.use(session({
   resave: false,

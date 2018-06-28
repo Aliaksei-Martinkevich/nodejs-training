@@ -2,6 +2,6 @@ import Store from '../../../Store';
 
 import UsersService from '../../../services/UsersService';
 
-export default function getAllUsers(req, res, next) {
-  res.json(Store.storage.getUsers());
+export default async function getAllUsers(req, res, next) {
+  res.json(await Store.storage.getUsers());
 }

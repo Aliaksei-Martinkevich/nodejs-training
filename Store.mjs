@@ -1,8 +1,12 @@
-import FileStorageProvider from './storage/FileStorageProvider';
+import DatabaseStorage from './storage/DatabaseStorage';
+
+import User from './database/models/User';
+import Product from './database/models/Product';
 
 
-const FileStorageSingleton = new FileStorageProvider('./data/storage.json');
-FileStorageSingleton.initFromFile();
+const DatabaseStorageSingleton = new DatabaseStorage({
+  users: User,
+  products: Product,
+});
 
-
-export default FileStorageSingleton;
+export default { storage: DatabaseStorageSingleton };

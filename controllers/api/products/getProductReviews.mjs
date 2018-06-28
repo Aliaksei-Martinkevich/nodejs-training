@@ -1,6 +1,6 @@
 import Store from '../../../Store';
 
 
-export default function getProductReviews(req, res, next) {
-  res.json(Store.storage.getProductById(req.params.id).reviews);
+export default async function getProductReviews(req, res, next) {
+  res.json((await Store.storage.getProductById(req.params.id)).reviews);
 }

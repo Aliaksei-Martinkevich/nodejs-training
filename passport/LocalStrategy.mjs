@@ -8,7 +8,7 @@ const LocalStrategy = new PassportLocalStrategy.Strategy({
   usernameField: 'username',
   passwordField: 'password',
 }, async (username, password, done) => {
-  const user = Store.storage.getUserByUsername(username);
+  const user = await Store.storage.getUserByUsername(username);
   if (user && await AuthService.checkPassword(user, password)) {
     done(null, user);
   } else {

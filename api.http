@@ -1,5 +1,5 @@
 @url = http://localhost:3000/api
-@id = 0522850f-304c-452f-1aa1-15a9794d988b
+@id = c1288422-a0e6-4a2f-a75e-a4124a27cf12
 @name = Product with reviews
 @reviews = [{ "name": "Review 1" }, { "name": "Review 2" }]
 @token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNTI5NDE5MzgyLCJleHAiOjE1MzMwMTkzODJ9.MXVo1b_3SPxblPy_nAEM8-J_WFkapy97Rl4Wx66vWm3qxA6js83CXBNWSdM9nOVcbHO2rd9gjtjkqLm1JyvtzA
