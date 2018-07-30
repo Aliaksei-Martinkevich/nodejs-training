@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 
 import connection from '../connection';
 
-import hash from '../../helpers/hash';
+import hash from '../../../helpers/hash';
 
 
 const User = connection.define('user', {
