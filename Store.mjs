@@ -1,10 +1,10 @@
-import DatabaseStorage from './storage/DatabaseStorage';
+import MongooseStorage from './storage/MongooseStorage';
 
-import User from './database/models/User';
-import Product from './database/models/Product';
+import User from './database/mongo/models/User';
+import Product from './database/mongo/models/Product';
 
 
-const DatabaseStorageSingleton = new DatabaseStorage({
+const DatabaseStorageSingleton = new MongooseStorage({
   users: User,
   products: Product,
 });

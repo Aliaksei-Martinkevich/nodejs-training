@@ -19,7 +19,8 @@ export default class AuthService {
    * @param {string} password
    */
   static async checkPassword(user, password) {
-    return bcrypt.compare(password, user.passwordHash);
+    console.log(password, user, user.password)
+    return bcrypt.compare(password, user.password);
   }
 
   static verifyToken(token) {
