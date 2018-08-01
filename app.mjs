@@ -12,9 +12,22 @@ import FacebookStrategy from './passport/FacebookStrategy';
 import TwitterStrategy from './passport/TwitterStrategy';
 import GoogleStrategy from './passport/GoogleStrategy';
 
+import Container from './IoCContainer/Container';
+
+import AuthService from './services/AuthService';
+import UsersService from './services/UsersService';
+import LocalStrategyHandler from './passport/LocalStrategyHandler';
+
+const container = new Container();
+container.registerSingleton('auth', AuthService);
+container.registerSingleton('users', UsersService);
+container.registerSingleton('localStrategyHandler', LocalStrategyHandler);
+
 const app = express();
 
-passport.use(LocalStrategy);
+app.set('container', container);
+
+passport.use(LocalStrategy(container.get('localStrategyHandler')));
 passport.use(FacebookStrategy);
 passport.use(TwitterStrategy);
 passport.use(GoogleStrategy);

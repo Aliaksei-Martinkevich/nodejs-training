@@ -1,9 +1,9 @@
-import AuthService from '../services/AuthService';
-
-
 export default function authMiddleware(req, res, next) {
   const token = req.header('Authorization');
-  if (AuthService.verifyToken(token)) {
+
+  const container = req.app.get('container');
+
+  if (container.get('auth').constructor.verifyToken(token)) {
     next();
   } else {
     res.statusCode = 403;

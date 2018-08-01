@@ -1,9 +1,6 @@
-import UsersService from '../../../services/UsersService';
-import AuthService from '../../../services/AuthService';
-
-
 export default async function postAuth(req, res, next) {
-  const { user } = req;
+  const { user, app } = req;
+  const container = app.get('container');
 
   if (user) {
     res.statusCode = 200;
@@ -11,9 +8,9 @@ export default async function postAuth(req, res, next) {
       code: 200,
       message: 'OK',
       data: {
-        user: UsersService.convertUserToResponseObject(user),
+        user: container.get('users').constructor.convertUserToResponseObject(user),
       },
-      token: AuthService.generateToken(user),
+      token: container.get('auth').constructor.generateToken(user),
     });
   } else {
     res.statusCode = 404;
