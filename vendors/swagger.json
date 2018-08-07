@@ -1,0 +1,226 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "nodejs training",
+    "version" : "1.0.0",
+    "title" : "Node JS Training API",
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/Aliaksei-Martinkevich/nodejs-training/1.0.0",
+  "tags" : [ {
+    "name" : "users"
+  }, {
+    "name" : "products"
+  } ],
+  "schemes" : [ "https", "http" ],
+  "paths" : {
+    "/users" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "Get all users",
+        "description" : "Returns list of all users\n",
+        "operationId" : "getUsers",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of users",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/User"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error"
+          }
+        }
+      }
+    },
+    "/products" : {
+      "get" : {
+        "tags" : [ "products" ],
+        "summary" : "Get all products",
+        "description" : "Returns list of all products\n",
+        "operationId" : "getProducts",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of products",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Product"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "products" ],
+        "summary" : "Add new Product",
+        "description" : "Returns all Products with new item",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true
+        }, {
+          "in" : "body",
+          "name" : "product",
+          "description" : "Product to create.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/product"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Product created.",
+            "schema" : {
+              "$ref" : "#/definitions/Product"
+            }
+          },
+          "404" : {
+            "description" : "Product couldn't be created."
+          }
+        }
+      }
+    },
+    "/products/{id}" : {
+      "get" : {
+        "tags" : [ "products" ],
+        "summary" : "Get product by id",
+        "description" : "Returns a product by id\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The product's id",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Product",
+            "schema" : {
+              "$ref" : "#/definitions/Product"
+            }
+          },
+          "400" : {
+            "description" : "Error"
+          }
+        }
+      }
+    },
+    "/products/{id}/reviews" : {
+      "get" : {
+        "tags" : [ "products" ],
+        "summary" : "Get product reviews by id",
+        "description" : "Returns a product reviews by id\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The product's id",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Product's reviews"
+          },
+          "400" : {
+            "description" : "Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "User" : {
+      "type" : "object",
+      "required" : [ "id", "username" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "5b5ed8e33d9842242cad1164"
+        },
+        "username" : {
+          "type" : "string",
+          "example" : "Aliaksei"
+        },
+        "password" : {
+          "type" : "string",
+          "example" : "$2b$15$fbjCZN71gGbq8kNncFRQXeAt7Gk71yRkoU4tkb6ZxJa7OlS9sD3Oy"
+        },
+        "email" : {
+          "type" : "string",
+          "format" : "email",
+          "example" : "mail@example.com"
+        },
+        "googleId" : {
+          "type" : "string"
+        },
+        "twitterId" : {
+          "type" : "string"
+        },
+        "facebookId" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "password" : "$2b$15$fbjCZN71gGbq8kNncFRQXeAt7Gk71yRkoU4tkb6ZxJa7OlS9sD3Oy",
+        "name" : "Aliaksei",
+        "id" : "5b5ed8e33d9842242cad1164"
+      }
+    },
+    "Product" : {
+      "type" : "object",
+      "required" : [ "id", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "5b5ed8e33d9842242cad1164"
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "Some name"
+        },
+        "reviews" : {
+          "type" : "string",
+          "format" : "json",
+          "example" : "[{ 'name': 'Review 1' }, { 'name': 'Review 2' }]"
+        }
+      },
+      "example" : {
+        "id" : "5b5ed8e33d9842242cad1164",
+        "name" : "Product"
+      }
+    }
+  }
+}
